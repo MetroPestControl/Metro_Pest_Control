@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Metro Pest Control Service and Sanitization</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #258c29;
+      --dark: #181a1b;
+      --grey: #444;
+      --light: #f7f7f7;
+      --header-bg: linear-gradient(90deg, #222 60%, #258c29 100%);
+      --card-bg: #fff;
+      --accent: #e9ffe7;
+    }
+    [data-theme="dark"] {
+      --card-bg: #23272c;
+      --light: #1b1e22;
+      --grey: #fff;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--light);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      scroll-behavior: smooth;
+      color: var(--grey);
+      min-height: 100vh;
+    }
+    header {
+      padding: 2.2rem 1.2rem 1.6rem;
+      background: var(--header-bg);
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 1px 16px rgba(36,36,36,0.20);
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-animated {
+      width: 110px;
+      filter: drop-shadow(0 0 15px #71c47c90);
+      animation: float-logo 3s infinite ease-in-out;
+      transition: transform .4s;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+    @keyframes float-logo {
+      0% { transform: translateY(0px);}
+      50% { transform: translateY(-10px);}
+      100% { transform: translateY(0px);}
+    }
+    .header-title {
+      font-size: 2.6rem;
+      margin: 0.2rem 0 0.35rem;
+      letter-spacing: .7px;
+    }
+    .slogan {
+      font-size: 1.08rem;
+      color: #def5de;
+      font-style: italic;
+    }
+    nav {
+      margin: 1.4rem 0 0.7rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #def5de;
+      margin: 0 1.1rem;
+      font-weight: 600;
+      transition: color .25s;
+      font-size: 1.1rem;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 2px;
+    }
+    nav a:hover, nav a.active {
+      color: #fff;
+      border-color: #ffd960;
+    }
+    .container {
+    max-width: 1126px;
+    margin: -113px auto 0;
+    z-index: 7;
+    position: relative;
+    padding: 0px 12.2rem;
+}
+    .section-card {
+      background: var(--card-bg);
+      box-shadow: 0 2px 14px rgba(36,36,36,0.08);
+      border-radius: 18px;
+      margin: 2.2rem 0;
+      padding: 2.3rem 2rem 2.1rem;
+      position: relative;
+      overflow: hidden;
+      transition: background .35s, color .35s;
+    }
+    /* Move About Us card further down */
+    .section-card:first-of-type {
+      margin-top: 90px !important;
+    }
+    .section-card h2 {
+      margin-top: 0;
+      font-size: 1.6rem;
+      color: var(--primary);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.3rem;
+      margin: 1.7rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .service-item {
+      background: var(--accent);
+      color: #222;
+      border-radius: 10px;
+      padding: 1.25rem 1.1rem 1.15rem 1.1rem;
+      box-shadow: 0 1px 8px #2221;
+      transition: transform .13s, box-shadow .2s, background .35s;
+      min-height: 110px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      font-size: 1.03rem;
+    }
+    .service-item:hover, .service-item:focus {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 12px 28px #4dc85a34;
+      transform: scale(1.06) translateY(-8px);
+    }
+    .service-more {
+      color: #e1ffd3;
+      font-size: .98rem;
+      opacity: 0;
+      max-height: 0;
+      transition: opacity .3s, max-height .3s;
+      margin-top: .5rem;
+      overflow: hidden;
+      pointer-events: none;
+      display: block;
+    }
+    .service-item.active .service-more {
+      opacity: 1;
+      max-height: 90px;
+      pointer-events: auto;
+      transition-delay: .1s;
+    }
+    .contact-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      font-size: 1.13rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      padding: .88rem 2.1rem;
+      cursor: pointer;
+      margin: 8px 0 0;;
+      box-shadow: 0 4px 18px #4dc85a25;
+      position: relative;
+      overflow: hidden;
+      transition: background .2s, color .2s, transform .15s;
+      letter-spacing: .04em;
+    }
+    .contact-btn:hover, .contact-btn:focus {
+      background: #2ad133;
+      color: #181a1b;
+      transform: scale(1.04) translateY(-3px);
+    }
+    .contact-info-box {
+      background: #effcef;
+      border-radius: 8px;
+      padding: 1.25rem 1rem 1.1rem;
+      color: #0d2b16;
+      font-size: 1.09rem;
+      margin-top: 1.3rem;
+      word-break: break-all;
+      box-shadow: 0 1px 6px #258c2955;
+      transition: background .35s, color .35s;
+    }
+    .contact-info-box a {
+      color: inherit;
+      text-decoration: underline;
+    }
+    [data-theme="dark"] .contact-info-box {
+      background: #18231c;
+      color: #e7ffe5;
+    }
+    footer {
+      background: #252c29;
+      color: #eee;
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: .03em;
+      padding: 1rem 0;
+      margin-top: 3.5rem;
+    }
+    @media (max-width: 650px) {
+      header { padding: 1.2rem 0.1rem 1rem; }
+      .container { padding: 0 0.2rem;}
+      .section-card { padding: 1.3rem 0.5rem 1.3rem;}
+      .header-title { font-size: 2rem; }
+      .section-card:first-of-type { margin-top: 45px !important;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="Logo-with-no-background.png" alt="Metro Pest Control Logo" class="logo-animated" id="logo">
+    <div class="header-title">Metro Pest Control Service and Sanitization</div>
+    <div class="slogan">We Kill To Protect Your Health. Call Us To Serve You Better.</div>
+    <nav>
+      <a href="#about" class="active">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <div class="container">
+    <!-- ABOUT -->
+    <section id="about" class="section-card">
+      <h2>About Us</h2>
+      <div>
+        Metro Pest Control is one of the most experienced (20+ years), affordable &amp; best pest control govt. licensed organizations which take care of the environment and public health.<br><br>
+        Our service center is equipped with the latest machinery like foggers, electric and manual sprayers—ready to serve large area townships rapidly. We maintain strict records of service time, chemicals, and staff for transparency.<br><br>
+        Our dedicated, qualified team is ministry-certified, expertly supervised, and always safety-focused.
+      </div>
+    </section>
+    <!-- SERVICES -->
+    <section id="services" class="section-card">
+      <h2>Our Services</h2>
+      <ul class="services-grid">
+        <li class="service-item" tabindex="0">
+          Residential &amp; Commercial
+          <span class="service-more">Targeted solutions for homes and businesses—discreet and thorough treatments.</span>
+        </li>
+        <li class="service-item" tabindex="0">
+          Sanitization &amp; Disinfection
+          <span class="service-more">Modern fogging &amp; surface disinfection to keep your spaces microbe-free.</span>
+        </li>
+        <li class="service-item" tabindex="0">
+          Rodent, Termite, Insect Control
+          <span class="service-more">Comprehensive eco-friendly approaches for persistent pests.</span>
+        </li>
+        <li class="service-item" tabindex="0">
+          Health &amp; Safety Certified
+          <span class="service-more">Team certified by government and food ministry—strict record keeping.</span>
+        </li>
+        <li class="service-item" tabindex="0">
+          Fast Service &amp; Recordkeeping
+          <span class="service-more">Quick turnaround—even for large sites. All service and chemical usage recorded.</span>
+        </li>
+      </ul>
+    </section>
+    <!-- CONTACT -->
+    <section id="contact" class="section-card" style="text-align:center;">
+      <h2>Contact Us</h2>
+      <button class="contact-btn" onclick="document.getElementById('contactinfo').scrollIntoView({behavior: 'smooth'});">
+        Show Contact Details
+      </button>
+      <div id="contactinfo" class="contact-info-box" style="display:none;">
+        <b>Phone:</b> <a href="tel:+919219796150">9219796150</a><br/>
+        <b>Email:</b> <a href="mailto:Metropestcontrol1972@gmail.com">Metropestcontrol1972@gmail.com</a><br/>
+        <b>Address:</b> 
+        <a href="https://www.google.com/maps/search/?api=1&query=361+Ashora+House,+Western+Kutchery+Rd,+Meerut+Cantt,+Meerut,+Uttar+Pradesh+250001" target="_blank" rel="noopener noreferrer">
+          361 Ashora House, Western Kutchery Rd,<br/>
+          Meerut Cantt, Meerut, Uttar Pradesh 250001
+        </a>
+      </div>
+    </section>
+  </div>
+  <footer>
+    &copy; 2025 Metro Pest Control Service and Sanitization. All rights reserved.
+  </footer>
+  <script>
+    // Navigation scroll and highlight
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+    // Service detail toggles
+    document.querySelectorAll('.service-item').forEach(function(item){
+      item.addEventListener('mouseenter', function() {
+        this.classList.add('active');
+      });
+      item.addEventListener('mouseleave', function() {
+        this.classList.remove('active');
+      });
+      item.addEventListener('focus', function() {
+        this.classList.add('active');
+      });
+      item.addEventListener('blur', function() {
+        this.classList.remove('active');
+      });
+    });
+    // Contact Us button toggles
+    document.querySelector('.contact-btn').addEventListener('click', function() {
+      var info = document.getElementById('contactinfo');
+      info.style.display = (info.style.display==='none'||!info.style.display) ? 'block':'none';
+      window.setTimeout(()=>info.scrollIntoView({behavior: 'smooth'}), 80);
+    });
+    // Logo animation on click
+    document.getElementById('logo').addEventListener('click', ()=> {
+      document.getElementById('logo').style.transform = 'scale(1.14) rotate(7deg)';
+      setTimeout(()=>document.getElementById('logo').style.transform='', 400);
+    });
+  </script>
+</body>
+</html>
